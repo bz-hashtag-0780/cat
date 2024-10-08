@@ -37,7 +37,7 @@ export default function Home() {
 						<MouseParallaxChild factorX={0.3} factorY={0.5}>
 							<Image
 								src="/250shadow.png"
-								alt="Botond Fekete"
+								alt="cat 1"
 								priority={true}
 								width={350}
 								height={350}
@@ -48,7 +48,7 @@ export default function Home() {
 						<MouseParallaxChild factorX={0.15} factorY={0.35}>
 							<Image
 								src="/1841972shadow.png"
-								alt="Botond Fekete"
+								alt="cat 2"
 								priority={true}
 								width={300}
 								height={300}
@@ -59,7 +59,7 @@ export default function Home() {
 						<MouseParallaxChild factorX={0.15} factorY={0.35}>
 							<Image
 								src="/100shadow.png"
-								alt="Botond Fekete"
+								alt="cat 3"
 								priority={true}
 								width={300}
 								height={300}

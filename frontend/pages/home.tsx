@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; // Import useState for managing modal state
 import {
 	MouseParallaxContainer,
 	MouseParallaxChild,
@@ -6,10 +6,17 @@ import {
 import Image from 'next/image';
 
 export default function Home() {
-	// const handleConnectWallet = () => {
-	// 	// Logic to connect wallet goes here
-	// 	console.log('Connect Wallet button clicked');
-	// };
+	const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+	const [selectedImage, setSelectedImage] = useState(''); // State to manage selected image
+
+	const openModal = (imageSrc: string) => {
+		setSelectedImage(imageSrc); // Set the selected image
+		setIsModalOpen(true); // Open the modal
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false); // Close the modal
+	};
 
 	return (
 		<div
@@ -21,6 +28,27 @@ export default function Home() {
 			}}
 			className="w-full"
 		>
+			{/* Modal Component */}
+			{isModalOpen && (
+				<div className=" modal fixed inset-0 flex justify-center items-center z-50">
+					{/* Backdrop */}
+					<div
+						className="absolute inset-0 bg-black opacity-50"
+						onClick={closeModal}
+					></div>
+
+					{/* Modal Content */}
+					<div className="relative rounded-md p-6 max-w-lg w-full bg-white p-5 mx-2 text-white">
+						<Image
+							src={selectedImage}
+							alt="Selected Cat"
+							width={100}
+							height={100}
+						/>
+					</div>
+				</div>
+			)}
+
 			<MouseParallaxContainer
 				globalFactorX={0.05}
 				globalFactorY={0.05}
@@ -31,8 +59,9 @@ export default function Home() {
 						CAT ERA
 					</div>
 					<div
-						className="absolute left-20 top-10 hidden w-50 sm:block"
+						className="absolute left-20 top-10 hidden w-50 sm:block cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
 						style={{ zIndex: 2 }}
+						onClick={() => openModal('/250shadow.png')} // Open modal on click
 					>
 						<MouseParallaxChild factorX={0.3} factorY={0.5}>
 							<Image
@@ -44,7 +73,10 @@ export default function Home() {
 							/>
 						</MouseParallaxChild>
 					</div>
-					<div className="absolute -left-20 top-10 hidden w-60 sm:block">
+					<div
+						className="absolute -left-20 top-10 hidden w-60 sm:block cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110"
+						onClick={() => openModal('/1841972shadow.png')}
+					>
 						<MouseParallaxChild factorX={0.15} factorY={0.35}>
 							<Image
 								src="/1841972shadow.png"
@@ -55,7 +87,10 @@ export default function Home() {
 							/>
 						</MouseParallaxChild>
 					</div>
-					<div className="absolute right-10 top-20 hidden w-40 sm:block">
+					<div
+						className="absolute right-10 top-20 hidden w-40 sm:block cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110"
+						onClick={() => openModal('/100shadow.png')}
+					>
 						<MouseParallaxChild factorX={0.15} factorY={0.35}>
 							<Image
 								src="/100shadow.png"

@@ -38,13 +38,35 @@ export default function Home() {
 					></div>
 
 					{/* Modal Content */}
-					<div className="relative rounded-md p-6 max-w-lg w-full bg-white p-5 mx-2 text-white">
-						<Image
-							src={selectedImage}
-							alt="Selected Cat"
-							width={100}
-							height={100}
-						/>
+					<div className="relative rounded-md p-6 max-w-lg w-full bg-white p-5 mx-2 flex items-center gap-x-2">
+						<div className="flex flex-col gap-y-2">
+							<div className="flex flex-col items-center">
+								<Image
+									src={selectedImage}
+									alt="Selected Cat"
+									width={200}
+									height={200}
+								/>
+								<span className="text-black text-2xl">
+									Lambokitty
+								</span>
+								<span className="text-black text-lg">
+									Key price: 500 flow
+								</span>
+							</div>
+							<div className="gap-x-2 flex items-center">
+								<button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400">
+									Buy a key
+								</button>
+								{/* needs to be conditional whether you can sell a key, also need to check rarity which key is being sold*/}
+								<button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-red-500">
+									Sell a key
+								</button>
+							</div>
+						</div>
+						<div>
+							<div>Hello ge</div>
+						</div>
 					</div>
 				</div>
 			)}
@@ -55,7 +77,7 @@ export default function Home() {
 				className="h-screen w-screen  flex items-center justify-center"
 			>
 				<div className="relative m-auto mt-44">
-					<div className="animate-float h-auto w-full text-[180px] font-oswald font-bold text-[rgb(239,82,209)] -mt-10">
+					<div className="animate-float h-auto w-full text-[180px] font-oswald font-bold text-[rgb(239,82,209)] -mt-10 select-none">
 						CAT ERA
 					</div>
 					<div
@@ -104,11 +126,11 @@ export default function Home() {
 				</div>
 			</MouseParallaxContainer>
 			{/* <button
-				onClick={handleConnectWallet}
-				style={{ padding: '10px 20px', fontSize: '16px' }}
-			>
-				Connect Wallet
-			</button> */}
+					onClick={handleConnectWallet}
+					style={{ padding: '10px 20px', fontSize: '16px' }}
+				>
+					Connect Wallet
+				</button> */}
 		</div>
 	);
 }

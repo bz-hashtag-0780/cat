@@ -18,6 +18,94 @@ export default function Home() {
 		setIsModalOpen(false); // Close the modal
 	};
 
+	const formatTimeAgo = (timestamp: number) => {
+		const now = Date.now();
+		const secondsAgo = Math.floor((now - timestamp) / 1000);
+		const minutesAgo = Math.floor(secondsAgo / 60);
+		const hoursAgo = Math.floor(minutesAgo / 60);
+		const daysAgo = Math.floor(hoursAgo / 24);
+		const monthsAgo = Math.floor(daysAgo / 30);
+
+		if (monthsAgo > 0) return `${monthsAgo}mo`;
+		if (daysAgo > 0) return `${daysAgo}d`;
+		if (hoursAgo > 0) return `${hoursAgo}h`;
+		if (minutesAgo > 0) return `${minutesAgo}m`;
+		return 'just now';
+	};
+
+	const dummyData = [
+		{
+			time: new Date('2024-10-01T10:00:00Z').getTime(),
+			user: 'User1',
+			key: 'Key1',
+			price: '10',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T10:30:00Z').getTime(),
+			user: 'User2',
+			key: 'Key2',
+			price: '5',
+			status: 'sold',
+		},
+		{
+			time: new Date('2024-10-01T11:00:00Z').getTime(),
+			user: 'User3',
+			key: 'Key3',
+			price: '10',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T12:00:00Z').getTime(),
+			user: 'User4',
+			key: 'Key4',
+			price: '5',
+			status: 'sold',
+		},
+		{
+			time: new Date('2024-10-01T12:30:00Z').getTime(),
+			user: 'User5',
+			key: 'Key5',
+			price: '10',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T13:00:00Z').getTime(),
+			user: 'User6',
+			key: 'Key6',
+			price: '15',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T13:30:00Z').getTime(),
+			user: 'User7',
+			key: 'Key7',
+			price: '20',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T14:00:00Z').getTime(),
+			user: 'User8',
+			key: 'Key8',
+			price: '15',
+			status: 'sold',
+		},
+		{
+			time: new Date('2024-10-01T14:30:00Z').getTime(),
+			user: 'User9',
+			key: 'Key9',
+			price: '20',
+			status: 'bought',
+		},
+		{
+			time: new Date('2024-10-01T15:00:00Z').getTime(),
+			user: 'User10',
+			key: 'Key10',
+			price: '15',
+			status: 'sold',
+		},
+	];
+
 	return (
 		<div
 			style={{
@@ -38,7 +126,7 @@ export default function Home() {
 					></div>
 
 					{/* Modal Content */}
-					<div className="relative rounded-md p-6 max-w-lg w-full bg-white p-5 mx-2 flex items-center gap-x-2">
+					<div className="relative rounded-md p-6 max-w-lg w-full bg-white p-5 mx-2 flex gap-x-2">
 						<div className="flex flex-col gap-y-2">
 							<div className="flex flex-col items-center">
 								<Image
@@ -65,7 +153,56 @@ export default function Home() {
 							</div>
 						</div>
 						<div>
-							<div>Hello ge</div>
+							<div className="w-full">
+								<table>
+									<thead>
+										<tr className="border-b">
+											<th className="p-2">Time</th>
+											<th className="p-2">User</th>
+											<th className="p-2">Key</th>
+											<th className="p-2">Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										{dummyData.map((item, index) => (
+											<tr key={index}>
+												<td className="p-2">
+													<span
+														className={
+															item.status ===
+															'sold'
+																? 'text-red-500'
+																: 'text-green-500'
+														}
+													>
+														{formatTimeAgo(
+															item.time
+														)}
+													</span>
+												</td>
+												<td className="p-2">
+													{item.user}
+												</td>
+												<td className="p-2">
+													{item.key}
+												</td>
+												<td className="p-2">
+													<span
+														className={
+															item.status ===
+															'sold'
+																? 'text-red-500'
+																: 'text-green-500'
+														}
+													>
+														{item.price} flow
+													</span>
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
